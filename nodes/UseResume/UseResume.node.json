@@ -1,0 +1,23 @@
+{
+	"node": "n8n-nodes-useresume.useResume",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Productivity", "AI"],
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://useresume.ai/resume-generation-api/docs"
+			}
+		],
+		"credentialDocumentation": [
+			{
+				"url": "https://useresume.ai/resume-generation-api"
+			}
+		]
+	},
+	"alias": ["resume", "cv", "cover letter", "pdf", "document generation", "career", "job application"],
+	"subcategories": {
+		"Productivity": ["Document Creation"],
+		"AI": ["Document Generation"]
+	}
+}

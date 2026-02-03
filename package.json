@@ -1,0 +1,64 @@
+{
+	"name": "@useresume/n8n-nodes-useresume",
+	"version": "1.0.0",
+	"description": "n8n community node for UseResume - AI-powered resume and cover letter generation",
+	"license": "MIT",
+	"author": {
+		"name": "UseResume",
+		"email": "support@useresume.ai"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/accelerated-ideas/n8n-node-useresume.git"
+	},
+	"homepage": "https://useresume.ai/resume-generation-api",
+	"main": "dist/nodes/UseResume/UseResume.node.js",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"resume",
+		"cv",
+		"cover-letter",
+		"pdf-generation",
+		"ai",
+		"document-generation"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/UseResumeApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/UseResume/UseResume.node.js"
+		]
+	},
+	"files": [
+		"dist"
+	],
+	"type": "commonjs",
+	"scripts": {
+		"build": "tsc && npm run copy:icons",
+		"copy:icons": "cp -r icons dist/ && cp nodes/UseResume/*.png dist/nodes/UseResume/ && cp nodes/UseResume/*.json dist/nodes/UseResume/",
+		"dev": "tsc --watch",
+		"lint": "eslint . --ext .ts",
+		"lint:fix": "eslint . --ext .ts --fix",
+		"format": "prettier --write \"**/*.ts\"",
+		"typecheck": "tsc --noEmit",
+		"prepublishOnly": "npm run build"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.0",
+		"@typescript-eslint/eslint-plugin": "^7.0.0",
+		"@typescript-eslint/parser": "^7.0.0",
+		"eslint": "^8.57.0",
+		"n8n-workflow": "^1.30.0",
+		"prettier": "^3.2.0",
+		"typescript": "^5.3.0"
+	},
+	"peerDependencies": {
+		"n8n-workflow": ">=1.0.0"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
+}
