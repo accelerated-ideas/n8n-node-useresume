@@ -1,11 +1,11 @@
 {
 	"name": "@useresume/n8n-nodes-useresume",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "n8n community node for UseResume - AI-powered resume and cover letter generation",
 	"license": "MIT",
 	"author": {
-		"name": "UseResume",
-		"email": "support@useresume.ai"
+		"name": "UseResume API",
+		"email": "app@useresume.ai"
 	},
 	"repository": {
 		"type": "git",
