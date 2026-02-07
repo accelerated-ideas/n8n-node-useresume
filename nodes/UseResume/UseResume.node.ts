@@ -117,9 +117,11 @@ export class UseResume implements INodeType {
 				displayName: 'Content',
 				name: 'content',
 				type: 'json',
-				default: '{\n  "name": "John Doe",\n  "email": "john@example.com",\n  "phone": "+1 234 567 8900",\n  "role": "Software Engineer",\n  "summary": "Experienced software engineer...",\n  "employment": [],\n  "education": [],\n  "skills": []\n}',
+				default:
+					'{\n  "name": "John Doe",\n  "email": "john@example.com",\n  "phone": "+1 234 567 8900",\n  "role": "Software Engineer",\n  "summary": "Experienced software engineer...",\n  "employment": [],\n  "education": [],\n  "skills": []\n}',
 				required: true,
-				description: 'Resume content as JSON. See <a href="https://useresume.ai/resume-generation-api/docs">API docs</a> for full schema.',
+				description:
+					'Resume content as JSON. See <a href="https://useresume.ai/resume-generation-api/docs">API docs</a> for full schema.',
 				displayOptions: {
 					show: {
 						operation: ['createResume'],
@@ -132,7 +134,8 @@ export class UseResume implements INodeType {
 				type: 'json',
 				default: '{\n  "template": "default",\n  "template_color": "blue"\n}',
 				required: true,
-				description: 'Styling options. Templates: default, clean, classic, executive, modern-pro, etc. Colors: blue, black, emerald, purple, etc.',
+				description:
+					'Styling options. Templates: default, clean, classic, executive, modern-pro, etc. Colors: blue, black, emerald, purple, etc.',
 				displayOptions: {
 					show: {
 						operation: ['createResume'],
@@ -147,7 +150,8 @@ export class UseResume implements INodeType {
 				displayName: 'Resume Content',
 				name: 'resumeContent',
 				type: 'json',
-				default: '{\n  "content": {\n    "name": "John Doe",\n    "email": "john@example.com"\n  },\n  "style": {\n    "template": "default",\n    "template_color": "blue"\n  }\n}',
+				default:
+					'{\n  "content": {\n    "name": "John Doe",\n    "email": "john@example.com"\n  },\n  "style": {\n    "template": "default",\n    "template_color": "blue"\n  }\n}',
 				required: true,
 				description: 'Resume content and style as JSON object with "content" and "style" keys',
 				displayOptions: {
@@ -286,9 +290,11 @@ export class UseResume implements INodeType {
 				displayName: 'Content',
 				name: 'coverLetterContent',
 				type: 'json',
-				default: '{\n  "name": "John Doe",\n  "email": "john@example.com",\n  "text": "Dear Hiring Manager,\\n\\nI am writing to express my interest..."\n}',
+				default:
+					'{\n  "name": "John Doe",\n  "email": "john@example.com",\n  "text": "Dear Hiring Manager,\\n\\nI am writing to express my interest..."\n}',
 				required: true,
-				description: 'Cover letter content as JSON. See <a href="https://useresume.ai/resume-generation-api/docs">API docs</a> for full schema.',
+				description:
+					'Cover letter content as JSON. See <a href="https://useresume.ai/resume-generation-api/docs">API docs</a> for full schema.',
 				displayOptions: {
 					show: {
 						operation: ['createCoverLetter'],
@@ -316,9 +322,11 @@ export class UseResume implements INodeType {
 				displayName: 'Cover Letter Content',
 				name: 'tailoredCoverLetterContent',
 				type: 'json',
-				default: '{\n  "content": {\n    "name": "John Doe",\n    "email": "john@example.com",\n    "text": "Base cover letter text..."\n  },\n  "style": {\n    "template": "default",\n    "template_color": "blue"\n  }\n}',
+				default:
+					'{\n  "content": {\n    "name": "John Doe",\n    "email": "john@example.com",\n    "text": "Base cover letter text..."\n  },\n  "style": {\n    "template": "default",\n    "template_color": "blue"\n  }\n}',
 				required: true,
-				description: 'Cover letter content and style as JSON object with "content" and "style" keys',
+				description:
+					'Cover letter content and style as JSON object with "content" and "style" keys',
 				displayOptions: {
 					show: {
 						operation: ['createTailoredCoverLetter'],
@@ -398,7 +406,12 @@ export class UseResume implements INodeType {
 				description: 'Whether to download the generated PDF and return as binary data',
 				displayOptions: {
 					show: {
-						operation: ['createResume', 'createTailoredResume', 'createCoverLetter', 'createTailoredCoverLetter'],
+						operation: [
+							'createResume',
+							'createTailoredResume',
+							'createCoverLetter',
+							'createTailoredCoverLetter',
+						],
 					},
 				},
 			},
@@ -410,7 +423,12 @@ export class UseResume implements INodeType {
 				description: 'Name of the binary property to store the downloaded file',
 				displayOptions: {
 					show: {
-						operation: ['createResume', 'createTailoredResume', 'createCoverLetter', 'createTailoredCoverLetter'],
+						operation: [
+							'createResume',
+							'createTailoredResume',
+							'createCoverLetter',
+							'createTailoredCoverLetter',
+						],
 						downloadFile: [true],
 					},
 				},
@@ -442,7 +460,10 @@ export class UseResume implements INodeType {
 						result = response as unknown as IDataObject;
 
 						if (downloadFileOption && response.data.file_url) {
-							const binaryPropertyName = this.getNodeParameter('outputBinaryPropertyName', i) as string;
+							const binaryPropertyName = this.getNodeParameter(
+								'outputBinaryPropertyName',
+								i,
+							) as string;
 							const fileBuffer = await downloadFile(this, response.data.file_url);
 
 							const binaryData = await this.helpers.prepareBinaryData(
@@ -456,6 +477,7 @@ export class UseResume implements INodeType {
 								binary: {
 									[binaryPropertyName]: binaryData,
 								},
+								pairedItem: { item: i },
 							});
 							continue;
 						}
@@ -466,10 +488,17 @@ export class UseResume implements INodeType {
 						const resumeContent = this.getNodeParameter('resumeContent', i) as string;
 						const jobTitle = this.getNodeParameter('jobTitle', i) as string;
 						const jobDescription = this.getNodeParameter('jobDescription', i) as string;
-						const tailoringInstructions = this.getNodeParameter('tailoringInstructions', i, '') as string;
+						const tailoringInstructions = this.getNodeParameter(
+							'tailoringInstructions',
+							i,
+							'',
+						) as string;
 						const downloadFileOption = this.getNodeParameter('downloadFile', i) as boolean;
 
-						const parsedResumeContent = parseJson<CreateResumeRequest>(resumeContent, 'Resume Content');
+						const parsedResumeContent = parseJson<CreateResumeRequest>(
+							resumeContent,
+							'Resume Content',
+						);
 						const request: CreateTailoredResumeRequest = {
 							resume_content: parsedResumeContent,
 							target_job: {
@@ -486,7 +515,10 @@ export class UseResume implements INodeType {
 						result = response as unknown as IDataObject;
 
 						if (downloadFileOption && response.data.file_url) {
-							const binaryPropertyName = this.getNodeParameter('outputBinaryPropertyName', i) as string;
+							const binaryPropertyName = this.getNodeParameter(
+								'outputBinaryPropertyName',
+								i,
+							) as string;
 							const fileBuffer = await downloadFile(this, response.data.file_url);
 
 							const binaryData = await this.helpers.prepareBinaryData(
@@ -500,6 +532,7 @@ export class UseResume implements INodeType {
 								binary: {
 									[binaryPropertyName]: binaryData,
 								},
+								pairedItem: { item: i },
 							});
 							continue;
 						}
@@ -542,7 +575,10 @@ export class UseResume implements INodeType {
 						result = response as unknown as IDataObject;
 
 						if (downloadFileOption && response.data.file_url) {
-							const binaryPropertyName = this.getNodeParameter('outputBinaryPropertyName', i) as string;
+							const binaryPropertyName = this.getNodeParameter(
+								'outputBinaryPropertyName',
+								i,
+							) as string;
 							const fileBuffer = await downloadFile(this, response.data.file_url);
 
 							const binaryData = await this.helpers.prepareBinaryData(
@@ -556,6 +592,7 @@ export class UseResume implements INodeType {
 								binary: {
 									[binaryPropertyName]: binaryData,
 								},
+								pairedItem: { item: i },
 							});
 							continue;
 						}
@@ -563,13 +600,23 @@ export class UseResume implements INodeType {
 					}
 
 					case 'createTailoredCoverLetter': {
-						const coverLetterContent = this.getNodeParameter('tailoredCoverLetterContent', i) as string;
+						const coverLetterContent = this.getNodeParameter(
+							'tailoredCoverLetterContent',
+							i,
+						) as string;
 						const jobTitle = this.getNodeParameter('coverLetterJobTitle', i) as string;
 						const jobDescription = this.getNodeParameter('coverLetterJobDescription', i) as string;
-						const tailoringInstructions = this.getNodeParameter('coverLetterTailoringInstructions', i, '') as string;
+						const tailoringInstructions = this.getNodeParameter(
+							'coverLetterTailoringInstructions',
+							i,
+							'',
+						) as string;
 						const downloadFileOption = this.getNodeParameter('downloadFile', i) as boolean;
 
-						const parsedCoverLetterContent = parseJson<CreateCoverLetterRequest>(coverLetterContent, 'Cover Letter Content');
+						const parsedCoverLetterContent = parseJson<CreateCoverLetterRequest>(
+							coverLetterContent,
+							'Cover Letter Content',
+						);
 						const request: CreateTailoredCoverLetterRequest = {
 							cover_letter_content: parsedCoverLetterContent,
 							target_job: {
@@ -586,7 +633,10 @@ export class UseResume implements INodeType {
 						result = response as unknown as IDataObject;
 
 						if (downloadFileOption && response.data.file_url) {
-							const binaryPropertyName = this.getNodeParameter('outputBinaryPropertyName', i) as string;
+							const binaryPropertyName = this.getNodeParameter(
+								'outputBinaryPropertyName',
+								i,
+							) as string;
 							const fileBuffer = await downloadFile(this, response.data.file_url);
 
 							const binaryData = await this.helpers.prepareBinaryData(
@@ -600,6 +650,7 @@ export class UseResume implements INodeType {
 								binary: {
 									[binaryPropertyName]: binaryData,
 								},
+								pairedItem: { item: i },
 							});
 							continue;
 						}
@@ -639,13 +690,14 @@ export class UseResume implements INodeType {
 						throw new Error(`Unknown operation: ${operation}`);
 				}
 
-				returnData.push({ json: result });
+				returnData.push({ json: result, pairedItem: { item: i } });
 			} catch (error) {
 				if (this.continueOnFail()) {
 					returnData.push({
 						json: {
 							error: (error as Error).message,
 						},
+						pairedItem: { item: i },
 					});
 					continue;
 				}
