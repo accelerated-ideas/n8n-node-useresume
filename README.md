@@ -107,9 +107,9 @@ For create operations, enable "Download File" to automatically download the gene
 
 ## Templates
 
-### Resume Templates (17)
+### Resume Templates (29)
 
-`default`, `clean`, `classic`, `executive`, `modern-pro`, `meridian`, `horizon`, `atlas`, `prism`, `nova`, `zenith`, `vantage`, `summit`, `quantum`, `vertex`, `harvard`, `lattice`
+`default`, `clean`, `classic`, `executive`, `modern-pro`, `meridian`, `horizon`, `atlas`, `prism`, `nova`, `zenith`, `vantage`, `summit`, `quantum`, `vertex`, `harvard`, `lattice`, `strata`, `cascade`, `pulse`, `folio`, `ridge`, `verso`, `ledger`, `tableau`, `apex`, `herald`, `beacon`, `onyx`
 
 ### Cover Letter Templates (11)
 

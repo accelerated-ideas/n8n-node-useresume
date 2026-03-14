@@ -25,7 +25,19 @@ export type ResumeTemplate =
 	| 'quantum'
 	| 'vertex'
 	| 'harvard'
-	| 'lattice';
+	| 'lattice'
+	| 'strata'
+	| 'cascade'
+	| 'pulse'
+	| 'folio'
+	| 'ridge'
+	| 'verso'
+	| 'ledger'
+	| 'tableau'
+	| 'apex'
+	| 'herald'
+	| 'beacon'
+	| 'onyx';
 
 export type CoverLetterTemplate =
 	| 'atlas'
